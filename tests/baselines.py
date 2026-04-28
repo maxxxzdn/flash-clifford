@@ -125,7 +125,7 @@ def fcgp_3d(x, y, weight):
     return torch.stack([o0, o1, o2, o3, o4, o5, o6, o7], dim=0)
 
 
-def placeholder(x, y):
+def gp_4d(x, y):
     """Geometric product in G(3,0,1)."""
     x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15 = x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8], x[9], x[10], x[11], x[12], x[13], x[14], x[15]
     y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15 = y[0], y[1], y[2], y[3], y[4], y[5], y[6], y[7], y[8], y[9], y[10], y[11], y[12], y[13], y[14], y[15]
@@ -197,9 +197,9 @@ def gelu_fcgp_norm_3d_torch(x, y, weight, normalize=True):
 
 
 @torch.compile
-def placeholder_torch(x, y):
+def gp_4d_torch(x, y):
     """Geometric product in G(3,0,1)."""
-    o = placeholder(x, y)
+    o = gp_4d(x, y)
     return o
 
 

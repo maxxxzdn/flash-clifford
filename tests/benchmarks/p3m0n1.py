@@ -2,8 +2,8 @@ import torch
 torch.set_float32_matmul_precision('medium')
 torch._dynamo.config.cache_size_limit = 512
 
-from ops.placeholder import placeholder
-from tests.baselines import placeholder_torch
+from ops.p3m0n1 import gp_4d
+from tests.baselines import gp_4d_torch
 from tests.utils import plot_heatmap, print_results_table, run_sweep
 
 
@@ -16,18 +16,18 @@ def setup_benchmark(batch_size, num_features):
 if __name__ == "__main__":
     assert torch.cuda.is_available()
 
-    path = "tests/benchmarks/results/placeholder"
+    path = "tests/benchmarks/results/p3m0n1"
 
     results = run_sweep(
-        placeholder,
-        placeholder_torch,
+        gp_4d,
+        gp_4d_torch,
         setup_benchmark,
         batch_sizes=[1024, 2048, 4096, 8192],
         num_features_list=[128, 256, 512, 1024],
         rep=200
     )
 
-    print_results_table(results, "placeholder")
+    print_results_table(results, "p3m0n1")
 
     plot_heatmap(results, 'speedup_fwd', 'Forward Pass Speedup: Triton vs PyTorch\nG(3,0,1)',
                  path + '/speedup/fwd.png')
