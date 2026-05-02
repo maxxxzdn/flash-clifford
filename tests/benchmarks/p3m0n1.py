@@ -2,8 +2,8 @@ import torch
 torch.set_float32_matmul_precision('medium')
 torch._dynamo.config.cache_size_limit = 512
 
-from ops.p3m0n1 import gp_4d
-from tests.baselines import gp_4d_torch
+from ops.p3m0n1 import gp_pga
+from tests.baselines import gp_pga_torch
 from tests.utils import plot_heatmap, print_results_table, run_sweep
 
 
@@ -19,8 +19,8 @@ if __name__ == "__main__":
     path = "tests/benchmarks/results/p3m0n1"
 
     results = run_sweep(
-        gp_4d,
-        gp_4d_torch,
+        gp_pga,
+        gp_pga_torch,
         setup_benchmark,
         batch_sizes=[1024, 2048, 4096, 8192],
         num_features_list=[128, 256, 512, 1024],

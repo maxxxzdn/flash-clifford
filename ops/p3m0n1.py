@@ -878,5 +878,5 @@ class GeometricProduct(torch.autograd.Function):
         return grad_x, grad_y
 
 
-def gp_4d(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
+def gp_pga(x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
     return GeometricProduct.apply(x, y)
